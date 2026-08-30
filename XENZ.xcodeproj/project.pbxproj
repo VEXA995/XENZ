@@ -418,7 +418,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		XZPROJCFG_LIST = {
+		XZPROJCFGLIST = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				XZPROJCFG_DEBUG,
