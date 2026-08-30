@@ -1,0 +1,433 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		XZ0001 /* XENZApp.swift in Sources */                 = {isa = PBXBuildFile; fileRef = XZ1001; };
+		XZ0002 /* HomeScreen.swift in Sources */              = {isa = PBXBuildFile; fileRef = XZ1002; };
+		XZ0003 /* AnalyticsScreen.swift in Sources */         = {isa = PBXBuildFile; fileRef = XZ1003; };
+		XZ0004 /* CardsScreen.swift in Sources */             = {isa = PBXBuildFile; fileRef = XZ1004; };
+		XZ0005 /* SettingsScreen.swift in Sources */          = {isa = PBXBuildFile; fileRef = XZ1005; };
+		XZ0006 /* MainTabView.swift in Sources */             = {isa = PBXBuildFile; fileRef = XZ1006; };
+		XZ0007 /* Transaction.swift in Sources */             = {isa = PBXBuildFile; fileRef = XZ1007; };
+		XZ0008 /* BankAccount.swift in Sources */             = {isa = PBXBuildFile; fileRef = XZ1008; };
+		XZ0009 /* BankCard.swift in Sources */                = {isa = PBXBuildFile; fileRef = XZ1009; };
+		XZ0010 /* UserProfile.swift in Sources */             = {isa = PBXBuildFile; fileRef = XZ1010; };
+		XZ0011 /* BankingStore.swift in Sources */            = {isa = PBXBuildFile; fileRef = XZ1011; };
+		XZ0012 /* SendMoneySheet.swift in Sources */          = {isa = PBXBuildFile; fileRef = XZ1012; };
+		XZ0013 /* ReceiveMoneySheet.swift in Sources */       = {isa = PBXBuildFile; fileRef = XZ1013; };
+		XZ0014 /* DepositMoneySheet.swift in Sources */       = {isa = PBXBuildFile; fileRef = XZ1014; };
+		XZ0015 /* TransactionDetailSheet.swift in Sources */   = {isa = PBXBuildFile; fileRef = XZ1015; };
+		XZ0016 /* BalanceCardView.swift in Sources */         = {isa = PBXBuildFile; fileRef = XZ1016; };
+		XZ0017 /* QuickActionButton.swift in Sources */       = {isa = PBXBuildFile; fileRef = XZ1017; };
+		XZ0018 /* AccountCardView.swift in Sources */         = {isa = PBXBuildFile; fileRef = XZ1018; };
+		XZ0019 /* TransactionRowView.swift in Sources */      = {isa = PBXBuildFile; fileRef = XZ1019; };
+		XZ0020 /* CreditCardView.swift in Sources */          = {isa = PBXBuildFile; fileRef = XZ1020; };
+		XZ0021 /* InAppNotificationBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = XZ1021; };
+		XZ0022 /* app_icon.png in Resources */                = {isa = PBXBuildFile; fileRef = XZ1022; };
+		XZ0023 /* LoadingSplashScreen.swift in Sources */     = {isa = PBXBuildFile; fileRef = XZ1025; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		XZ1001 /* XENZApp.swift */                 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XENZApp.swift; sourceTree = "<group>"; name = XENZApp.swift; };
+		XZ1002 /* HomeScreen.swift */              = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; name = HomeScreen.swift; };
+		XZ1003 /* AnalyticsScreen.swift */         = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsScreen.swift; sourceTree = "<group>"; name = AnalyticsScreen.swift; };
+		XZ1004 /* CardsScreen.swift */             = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsScreen.swift; sourceTree = "<group>"; name = CardsScreen.swift; };
+		XZ1005 /* SettingsScreen.swift */          = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; name = SettingsScreen.swift; };
+		XZ1006 /* MainTabView.swift */             = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; name = MainTabView.swift; };
+		XZ1007 /* Transaction.swift */             = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; name = Transaction.swift; };
+		XZ1008 /* BankAccount.swift */             = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankAccount.swift; sourceTree = "<group>"; name = BankAccount.swift; };
+		XZ1009 /* BankCard.swift */                = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankCard.swift; sourceTree = "<group>"; name = BankCard.swift; };
+		XZ1010 /* UserProfile.swift */             = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; name = UserProfile.swift; };
+		XZ1011 /* BankingStore.swift */            = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankingStore.swift; sourceTree = "<group>"; name = BankingStore.swift; };
+		XZ1012 /* SendMoneySheet.swift */          = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendMoneySheet.swift; sourceTree = "<group>"; name = SendMoneySheet.swift; };
+		XZ1013 /* ReceiveMoneySheet.swift */       = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveMoneySheet.swift; sourceTree = "<group>"; name = ReceiveMoneySheet.swift; };
+		XZ1014 /* DepositMoneySheet.swift */       = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositMoneySheet.swift; sourceTree = "<group>"; name = DepositMoneySheet.swift; };
+		XZ1015 /* TransactionDetailSheet.swift */   = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailSheet.swift; sourceTree = "<group>"; name = TransactionDetailSheet.swift; };
+		XZ1016 /* BalanceCardView.swift */         = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceCardView.swift; sourceTree = "<group>"; name = BalanceCardView.swift; };
+		XZ1017 /* QuickActionButton.swift */       = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickActionButton.swift; sourceTree = "<group>"; name = QuickActionButton.swift; };
+		XZ1018 /* AccountCardView.swift */         = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCardView.swift; sourceTree = "<group>"; name = AccountCardView.swift; };
+		XZ1019 /* TransactionRowView.swift */      = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionRowView.swift; sourceTree = "<group>"; name = TransactionRowView.swift; };
+		XZ1020 /* CreditCardView.swift */          = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditCardView.swift; sourceTree = "<group>"; name = CreditCardView.swift; };
+		XZ1021 /* InAppNotificationBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppNotificationBanner.swift; sourceTree = "<group>"; name = InAppNotificationBanner.swift; };
+		XZ1022 /* app_icon.png */                 = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon.png; sourceTree = "<group>"; name = app_icon.png; };
+		XZ1023 /* Info.plist */                   = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; name = Info.plist; };
+		XZ1024 /* XENZ.xcconfig */                = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = XENZ.xcconfig; sourceTree = "<group>"; name = XENZ.xcconfig; };
+		XZ1025 /* LoadingSplashScreen.swift */     = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingSplashScreen.swift; sourceTree = "<group>"; name = LoadingSplashScreen.swift; };
+		XZPROD /* XENZ.app */                     = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XENZ.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		XZFRMK = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		XZROOT = {
+			isa = PBXGroup;
+			children = (
+				XZXENZ,
+				XZPROD,
+			);
+			sourceTree = "<group>";
+		};
+		XZXENZ = {
+			isa = PBXGroup;
+			children = (
+				XZSOURCES,
+				XZRES,
+			);
+			name = XENZ;
+			path = XENZ;
+			sourceTree = "<group>";
+		};
+		XZSOURCES = {
+			isa = PBXGroup;
+			children = (
+				XZAPP,
+				XZMODELS,
+				XZVIEWMODELS,
+				XZVIEWS,
+			);
+			name = Sources;
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		XZAPP = {
+			isa = PBXGroup;
+			children = (
+				XZ1001,
+			);
+			name = App;
+			path = App;
+			sourceTree = "<group>";
+		};
+		XZMODELS = {
+			isa = PBXGroup;
+			children = (
+				XZ1007,
+				XZ1008,
+				XZ1009,
+				XZ1010,
+			);
+			name = Models;
+			path = Models;
+			sourceTree = "<group>";
+		};
+		XZVIEWMODELS = {
+			isa = PBXGroup;
+			children = (
+				XZ1011,
+			);
+			name = ViewModels;
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		XZVIEWS = {
+			isa = PBXGroup;
+			children = (
+				XZNAV,
+				XZSCREENS,
+				XZMODALS,
+				XZCOMPONENTS,
+			);
+			name = Views;
+			path = Views;
+			sourceTree = "<group>";
+		};
+		XZNAV = {
+			isa = PBXGroup;
+			children = (
+				XZ1006,
+			);
+			name = Navigation;
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		XZSCREENS = {
+			isa = PBXGroup;
+			children = (
+				XZ1002,
+				XZ1003,
+				XZ1004,
+				XZ1005,
+			);
+			name = Screens;
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		XZMODALS = {
+			isa = PBXGroup;
+			children = (
+				XZ1012,
+				XZ1013,
+				XZ1014,
+				XZ1015,
+			);
+			name = Modals;
+			path = Modals;
+			sourceTree = "<group>";
+		};
+		XZCOMPONENTS = {
+			isa = PBXGroup;
+			children = (
+				XZ1016,
+				XZ1017,
+				XZ1018,
+				XZ1019,
+				XZ1020,
+				XZ1021,
+				XZ1025,
+			);
+			name = Components;
+			path = Components;
+			sourceTree = "<group>";
+		};
+		XZRES = {
+			isa = PBXGroup;
+			children = (
+				XZ1022,
+				XZ1023,
+				XZ1024,
+			);
+			name = Resources;
+			path = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		XZTARGET = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = XZCFGLIST;
+			buildPhases = (
+				XZSRC_PHASE,
+				XZFRMK,
+				XZRES_PHASE,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = XENZ;
+			productName = XENZ;
+			productReference = XZPROD;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		XZPROJ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				ORGANIZATIONNAME = "Vexa";
+				TargetAttributes = {
+					XZTARGET = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = XZPROJCFGLIST;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = XZROOT;
+			productRefGroup = XZROOT;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				XZTARGET,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		XZRES_PHASE = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				XZ0022,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		XZSRC_PHASE = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				XZ0001,
+				XZ0002,
+				XZ0003,
+				XZ0004,
+				XZ0005,
+				XZ0006,
+				XZ0007,
+				XZ0008,
+				XZ0009,
+				XZ0010,
+				XZ0011,
+				XZ0012,
+				XZ0013,
+				XZ0014,
+				XZ0015,
+				XZ0016,
+				XZ0017,
+				XZ0018,
+				XZ0019,
+				XZ0020,
+				XZ0021,
+				XZ0023,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		XZCFG_DEBUG = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = XZ1024;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_OPTIMIZATION = space;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = XENZ/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vexa.xenz;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		XZCFG_RELEASE = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = XZ1024;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_OPTIMIZATION = space;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = XENZ/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vexa.xenz;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = "whole-module";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		XZPROJCFG_DEBUG = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		XZPROJCFG_RELEASE = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		XZCFGLIST = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				XZCFG_DEBUG,
+				XZCFG_RELEASE,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		XZPROJCFG_LIST = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				XZPROJCFG_DEBUG,
+				XZPROJCFG_RELEASE,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = XZPROJ;
+}
