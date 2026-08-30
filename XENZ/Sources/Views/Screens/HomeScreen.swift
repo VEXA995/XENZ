@@ -9,13 +9,17 @@ struct HomeScreen: View {
     @State private var showSettings = false
     @State private var showAllTransactions = false
     @State private var selectedTransaction: Transaction? = nil
+    @State private var selectedFilter: String = "All"
+    @State private var searchText: String = ""
+
+    private let filterOptions = ["All", "Gaming", "Shopping", "Subscriptions", "Income"]
 
     var body: some View {
         ZStack {
             Color.black.ignoresSafeArea()
 
             ScrollView(showsIndicators: false) {
-                VStack(spacing: 24) {
+                VStack(spacing: 22) {
                     topBar
 
                     BalanceCardView(
@@ -34,6 +38,9 @@ struct HomeScreen: View {
                 .padding(.horizontal, 20)
                 .padding(.top, 12)
                 .padding(.bottom, 110)
+            }
+            .refreshable {
+                UIImpactFeedbackGenerator(style: .medium).impactOccurred()
             }
 
             if let notif = store.activeNotification {
@@ -155,8 +162,31 @@ struct HomeScreen: View {
         }
     }
 
+    private var filteredTransactions: [Transaction] {
+        store.transactions.filter { tx in
+            let matchesCategory: Bool
+            if selectedFilter == "All" {
+                matchesCategory = true
+            } else if selectedFilter == "Income" {
+                matchesCategory = tx.type == .income
+            } else {
+                matchesCategory = tx.category.rawValue.lowercased() == selectedFilter.lowercased()
+            }
+
+            let matchesSearch: Bool
+            if searchText.isEmpty {
+                matchesSearch = true
+            } else {
+                matchesSearch = tx.title.localizedCaseInsensitiveContains(searchText) ||
+                                tx.subtitle.localizedCaseInsensitiveContains(searchText)
+            }
+
+            return matchesCategory && matchesSearch
+        }
+    }
+
     private var transactionsSection: some View {
-        VStack(spacing: 12) {
+        VStack(spacing: 14) {
             HStack {
                 Text("Transactions")
                     .font(.system(size: 18, weight: .bold))
@@ -174,29 +204,69 @@ struct HomeScreen: View {
                 .foregroundStyle(Color(white: 0.55))
             }
 
-            let displayList = showAllTransactions ? store.transactions : Array(store.transactions.prefix(6))
-
-            VStack(spacing: 0) {
-                ForEach(Array(displayList.enumerated()), id: \.element.id) { idx, tx in
-                    TransactionRowView(transaction: tx) {
-                        selectedTransaction = tx
-                    }
-
-                    if idx < displayList.count - 1 {
-                        Divider()
-                            .background(Color(white: 0.12))
-                            .padding(.leading, 74)
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 8) {
+                    ForEach(filterOptions, id: \.self) { filter in
+                        Button {
+                            UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                            withAnimation(.spring(response: 0.3, dampingFraction: 0.8)) {
+                                selectedFilter = filter
+                            }
+                        } label: {
+                            Text(filter)
+                                .font(.system(size: 12, weight: selectedFilter == filter ? .semibold : .regular))
+                                .foregroundStyle(selectedFilter == filter ? Color.black : Color.white)
+                                .padding(.horizontal, 14)
+                                .padding(.vertical, 6)
+                                .background(
+                                    Capsule()
+                                        .fill(selectedFilter == filter ? Color.white : Color(white: 0.12))
+                                )
+                        }
                     }
                 }
             }
-            .background(
-                RoundedRectangle(cornerRadius: 20, style: .continuous)
-                    .fill(Color(white: 0.08))
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 20, style: .continuous)
-                            .strokeBorder(Color(white: 0.14), lineWidth: 1)
-                    )
-            )
+
+            let displayList = showAllTransactions ? filteredTransactions : Array(filteredTransactions.prefix(6))
+
+            if displayList.isEmpty {
+                VStack(spacing: 8) {
+                    Image(systemName: "tray")
+                        .font(.system(size: 24))
+                        .foregroundStyle(Color(white: 0.3))
+                    Text("No transactions found")
+                        .font(.system(size: 13))
+                        .foregroundStyle(Color(white: 0.4))
+                }
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 32)
+                .background(
+                    RoundedRectangle(cornerRadius: 20, style: .continuous)
+                        .fill(Color(white: 0.08))
+                )
+            } else {
+                VStack(spacing: 0) {
+                    ForEach(Array(displayList.enumerated()), id: \.element.id) { idx, tx in
+                        TransactionRowView(transaction: tx) {
+                            selectedTransaction = tx
+                        }
+
+                        if idx < displayList.count - 1 {
+                            Divider()
+                                .background(Color(white: 0.12))
+                                .padding(.leading, 74)
+                        }
+                    }
+                }
+                .background(
+                    RoundedRectangle(cornerRadius: 20, style: .continuous)
+                        .fill(Color(white: 0.08))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 20, style: .continuous)
+                                .strokeBorder(Color(white: 0.14), lineWidth: 1)
+                        )
+                )
+            }
         }
     }
 }

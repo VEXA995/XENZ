@@ -1,5 +1,13 @@
 import SwiftUI
 
+struct ContactShortcut: Identifiable {
+    let id = UUID()
+    let name: String
+    let iban: String
+    let category: TransactionCategory
+    let icon: String
+}
+
 struct SendMoneySheet: View {
     @ObservedObject var store: BankingStore
     @Environment(\.dismiss) private var dismiss
@@ -10,20 +18,29 @@ struct SendMoneySheet: View {
     @State private var note: String = ""
     @State private var selectedCategory: TransactionCategory = .transfer
     @State private var isAuthorizing: Bool = false
-    @State private var isSuccess: Bool = false
 
     private let presets: [Double] = [5.0, 10.0, 20.0, 50.0]
+
+    private let recentContacts: [ContactShortcut] = [
+        ContactShortcut(name: "Alex", iban: "DE44 5001 0517 5409 3210 00", category: .transfer, icon: "person.circle.fill"),
+        ContactShortcut(name: "Discord", iban: "LU89 0123 4567 8901 2345 67", category: .subscriptions, icon: "play.tv.fill"),
+        ContactShortcut(name: "Roblox", iban: "US99 ROBL OX12 4019 4810 29", category: .gaming, icon: "gamecontroller.fill"),
+        ContactShortcut(name: "Eneba", iban: "LT44 7044 0600 0123 4567 89", category: .gaming, icon: "gamecontroller.fill"),
+        ContactShortcut(name: "Amazon", iban: "DE89 3704 0044 0532 0130 00", category: .shopping, icon: "bag.fill")
+    ]
 
     var body: some View {
         NavigationStack {
             ZStack {
                 Color.black.ignoresSafeArea()
 
-                ScrollView {
-                    VStack(spacing: 24) {
+                ScrollView(showsIndicators: false) {
+                    VStack(spacing: 22) {
                         amountHeader
 
                         quickPresets
+
+                        recentContactsRow
 
                         VStack(spacing: 16) {
                             inputCard(title: "RECIPIENT NAME", icon: "person.fill") {
@@ -32,11 +49,19 @@ struct SendMoneySheet: View {
                             }
 
                             inputCard(title: "IBAN", icon: "creditcard.fill") {
-                                TextField("e.g. DE89 3704 0044 0532 0130 00", text: $iban)
-                                    .textInputAutocapitalization(.characters)
-                                    .autocorrectionDisabled(true)
-                                    .foregroundStyle(.white)
-                                    .font(.system(.body, design: .monospaced))
+                                HStack {
+                                    TextField("DE...", text: $iban)
+                                        .textInputAutocapitalization(.characters)
+                                        .autocorrectionDisabled(true)
+                                        .foregroundStyle(.white)
+                                        .font(.system(.body, design: .monospaced))
+
+                                    if iban.count >= 15 {
+                                        Image(systemName: "checkmark.circle.fill")
+                                            .font(.system(size: 16))
+                                            .foregroundStyle(Color(red: 0.35, green: 0.9, blue: 0.55))
+                                    }
+                                }
                             }
 
                             inputCard(title: "NOTE / REFERENCE", icon: "text.bubble.fill") {
@@ -48,7 +73,7 @@ struct SendMoneySheet: View {
                         }
 
                         sendButton
-                            .padding(.top, 10)
+                            .padding(.top, 6)
                     }
                     .padding(20)
                 }
@@ -69,28 +94,28 @@ struct SendMoneySheet: View {
     private var amountHeader: some View {
         VStack(spacing: 6) {
             Text("ENTER AMOUNT")
-                .font(.system(size: 11, weight: .bold, design: .monospaced))
+                .font(.system(size: 10, weight: .bold, design: .monospaced))
                 .foregroundStyle(Color(white: 0.45))
                 .tracking(2)
 
             HStack(spacing: 4) {
                 Text("€")
-                    .font(.system(size: 38, weight: .bold))
+                    .font(.system(size: 36, weight: .bold))
                     .foregroundStyle(.white)
 
                 TextField("0.00", text: $amountText)
-                    .font(.system(size: 48, weight: .bold, design: .rounded))
+                    .font(.system(size: 46, weight: .bold, design: .rounded))
                     .keyboardType(.decimalPad)
                     .foregroundStyle(.white)
                     .multilineTextAlignment(.leading)
                     .frame(minWidth: 120)
             }
 
-            Text("Available Balance: \(store.account.formattedBalance)")
+            Text("Available: \(store.account.formattedBalance)")
                 .font(.system(size: 13, weight: .regular))
                 .foregroundStyle(Color(white: 0.5))
         }
-        .padding(.vertical, 10)
+        .padding(.vertical, 8)
     }
 
     private var quickPresets: some View {
@@ -101,10 +126,10 @@ struct SendMoneySheet: View {
                     amountText = String(format: "%.2f", val)
                 } label: {
                     Text("€\(Int(val))")
-                        .font(.system(size: 14, weight: .semibold))
+                        .font(.system(size: 13, weight: .semibold))
                         .foregroundStyle(.white)
                         .frame(maxWidth: .infinity)
-                        .padding(.vertical, 10)
+                        .padding(.vertical, 9)
                         .background(
                             RoundedRectangle(cornerRadius: 12, style: .continuous)
                                 .fill(Color(white: 0.12))
@@ -121,14 +146,55 @@ struct SendMoneySheet: View {
                 amountText = String(format: "%.2f", store.account.balance)
             } label: {
                 Text("MAX")
-                    .font(.system(size: 12, weight: .bold, design: .monospaced))
+                    .font(.system(size: 11, weight: .bold, design: .monospaced))
                     .foregroundStyle(.white)
                     .frame(maxWidth: .infinity)
-                    .padding(.vertical, 10)
+                    .padding(.vertical, 9)
                     .background(
                         RoundedRectangle(cornerRadius: 12, style: .continuous)
                             .fill(Color(white: 0.20))
                     )
+            }
+        }
+    }
+
+    private var recentContactsRow: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text("QUICK CONTACTS")
+                .font(.system(size: 10, weight: .bold, design: .monospaced))
+                .foregroundStyle(Color(white: 0.45))
+                .tracking(1.5)
+
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 10) {
+                    ForEach(recentContacts) { contact in
+                        Button {
+                            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                            recipient = contact.name
+                            iban = contact.iban
+                            selectedCategory = contact.category
+                        } label: {
+                            HStack(spacing: 8) {
+                                Image(systemName: contact.icon)
+                                    .font(.system(size: 13))
+                                    .foregroundStyle(.white)
+                                Text(contact.name)
+                                    .font(.system(size: 12, weight: .medium))
+                                    .foregroundStyle(.white)
+                            }
+                            .padding(.horizontal, 12)
+                            .padding(.vertical, 8)
+                            .background(
+                                RoundedRectangle(cornerRadius: 12, style: .continuous)
+                                    .fill(recipient == contact.name ? Color(white: 0.22) : Color(white: 0.10))
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 12, style: .continuous)
+                                            .strokeBorder(recipient == contact.name ? Color.white.opacity(0.4) : Color(white: 0.16), lineWidth: 1)
+                                    )
+                            )
+                        }
+                    }
+                }
             }
         }
     }
@@ -206,9 +272,9 @@ struct SendMoneySheet: View {
                         .tint(.black)
                 } else {
                     Image(systemName: "faceid")
-                        .font(.system(size: 18))
+                        .font(.system(size: 17))
                     Text("Send €\(String(format: "%.2f", amountVal))")
-                        .font(.system(size: 16, weight: .bold))
+                        .font(.system(size: 15, weight: .bold))
                 }
             }
             .foregroundStyle(canSend ? Color.black : Color(white: 0.4))
@@ -226,7 +292,7 @@ struct SendMoneySheet: View {
         isAuthorizing = true
         UIImpactFeedbackGenerator(style: .medium).impactOccurred()
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             let success = store.sendMoney(
                 recipient: recipient,
                 iban: iban.isEmpty ? "DE89 3704 0044 0532 0130 00" : iban,
