@@ -1,4 +1,4 @@
-name: Build and Test Xenz
+name: Build Xenz IPA
 
 on:
   push:
@@ -7,8 +7,11 @@ on:
     branches: [ main ]
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
-  build:
+  build-ipa:
     runs-on: macos-14
 
     steps:
@@ -18,7 +21,7 @@ jobs:
       - name: Select Xcode Version
         run: sudo xcode-select -s /Applications/Xcode_15.4.app || sudo xcode-select -s /Applications/Xcode_16.app
 
-      - name: Build Application
+      - name: Build Application (.app)
         run: |
           set -o pipefail
           xcodebuild \
@@ -26,7 +29,43 @@ jobs:
             -scheme XENZ \
             -configuration Release \
             -sdk iphoneos \
+            -derivedDataPath build/DerivedData \
+            SYMROOT=build \
+            CONFIGURATION_BUILD_DIR=build/Release-iphoneos \
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGNING_REQUIRED=NO \
             CODE_SIGN_IDENTITY="" \
-            build | xcpretty || true
+            build
+
+      - name: Package IPA for Sideloadly
+        run: |
+          mkdir -p Payload
+          cp -r build/Release-iphoneos/XENZ.app Payload/
+          zip -r XENZ.ipa Payload
+          echo "XENZ.ipa created successfully!"
+
+      - name: Upload IPA Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: XENZ-ipa
+          path: XENZ.ipa
+          retention-days: 30
+
+      - name: Publish Sideloadly IPA to GitHub Releases
+        if: github.ref == 'refs/heads/main'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: latest
+          name: "Xenz v1.0.0 (Sideloadly IPA)"
+          body: |
+            ### 📱 Xenz Minimalist Banking App (iOS)
+            
+            **Direct IPA for Sideloadly / AltStore / TrollStore / Scarlet / SideStore**
+            
+            1. Download `XENZ.ipa` below.
+            2. Open **Sideloadly** on your PC/Mac.
+            3. Drag and drop `XENZ.ipa` into Sideloadly.
+            4. Enter your Apple ID and click **Start** to install on your iPhone!
+          files: XENZ.ipa
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
